@@ -11,13 +11,14 @@ import {
 import GetAlbum from "../../hooks/useGetAlbum";
 import { useParams } from "react-router";
 import { msToMinutesAndSeconds } from "../../utils";
+import Loading from "../../components/atoms/loading";
 
 const AlbumDetails = () => {
   const { id } = useParams();
 
   const { album } = GetAlbum(id);
 
-  if (!album) return <div>is loading</div>;
+  if (!album) return <Loading />;
 
   return (
     <>

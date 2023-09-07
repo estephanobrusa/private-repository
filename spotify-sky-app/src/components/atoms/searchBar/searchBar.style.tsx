@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const SearchBarContainer = styled.div`
   display: flex;
-  align-self: flex-end;
+  align-self: center;
   justify-content: center;
   align-items: center;
-  width: 105px;
+  width: 40px;
   position: relative;
   height: 40px;
   justify-items: flex-end;
@@ -38,11 +38,16 @@ export const Input = styled.input`
   &::placeholder {
     color: #b8b7b7;
   }
+  @media (max-width: 1024px) {
+    &::placeholder {
+      color: transparent;
+    }
+  }
 `;
 
 export const IconWrapper = styled.div`
   position: absolute;
-  top: 30%;
-  right: 15px;
+  top: 25%;
+  right: 10px;
   bottom: 50%;
 `;
