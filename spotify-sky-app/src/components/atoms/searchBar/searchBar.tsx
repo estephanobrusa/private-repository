@@ -7,7 +7,7 @@ interface SearchBarProps {
 }
 const SearchBar = ({ input, handleSearch }: SearchBarProps) => {
   return (
-    <SearchBarContainer>
+    <SearchBarContainer active={!!input}>
       <Input
         placeholder="Search"
         value={input}
