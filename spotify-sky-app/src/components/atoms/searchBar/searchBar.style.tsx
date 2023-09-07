@@ -3,12 +3,15 @@ import styled from "styled-components";
 export const SearchBarContainer = styled.div`
   display: flex;
   align-self: flex-end;
-  width: 100px;
+  justify-content: center;
+  align-items: center;
+  width: 105px;
+  position: relative;
   height: 40px;
   justify-items: flex-end;
   border: 1px solid #ccc;
   border-radius: 25px;
-  padding: 5px;
+  color: #fff;
 
   @media (max-width: 1024px) {
     transition: width 0.3s;
@@ -24,14 +27,22 @@ export const SearchBarContainer = styled.div`
 `;
 
 export const Input = styled.input`
-  flex: 1;
+  display: flex;
+  width: 100%;
   border: none;
   outline: none;
+  padding-left: 10px;
   font-size: 16px;
-  padding-left: 15px;
   background-color: transparent;
   color: #fff;
   &::placeholder {
     color: #b8b7b7;
   }
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  top: 30%;
+  right: 15px;
+  bottom: 50%;
 `;

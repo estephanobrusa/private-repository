@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import instance from "../axios";
 import { Album, DataResponse } from "../interfaces/albums";
 import { NewAlbums } from "./useGetNewAlbums";
+import { useNavigate } from "react-router";
 
 interface SearchAlbumsProps {
   input: string;
   filterActive?: boolean;
 }
 const SearchAlbums = ({ input, filterActive }: SearchAlbumsProps) => {
+  const navigate = useNavigate();
   const [albums, setAlbums] = useState<NewAlbums[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +25,7 @@ const SearchAlbums = ({ input, filterActive }: SearchAlbumsProps) => {
       setCurrentPage(1);
       setHasNext(true);
       setIsError(false);
-      setIsLoading(true);
+      setIsLoading(false);
     }
     fetchAlbums();
   }, [input, currentPage]);
@@ -46,6 +48,7 @@ const SearchAlbums = ({ input, filterActive }: SearchAlbumsProps) => {
 
   const fetchAlbums = async () => {
     try {
+      setIsLoading(true);
       const response = await instance.get<DataResponse>(
         `https://api.spotify.com/v1/search?q=${input}type=album&limit=10&offset=${
           (currentPage - 1) * 10
@@ -63,6 +66,7 @@ const SearchAlbums = ({ input, filterActive }: SearchAlbumsProps) => {
       setAlbums((prev) => [...prev, ...newAlbums]);
     } catch (error) {
       setIsError(true);
+      navigate("/error");
     } finally {
       setIsLoading(false);
     }

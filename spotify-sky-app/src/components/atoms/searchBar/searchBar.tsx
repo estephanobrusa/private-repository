@@ -1,4 +1,5 @@
-import { Input, SearchBarContainer } from "./searchBar.style";
+import { IconWrapper, Input, SearchBarContainer } from "./searchBar.style";
+import { FaSearch } from "react-icons/fa";
 
 interface SearchBarProps {
   input: string;
@@ -12,6 +13,9 @@ const SearchBar = ({ input, handleSearch }: SearchBarProps) => {
         value={input}
         onChange={(e) => handleSearch(e.target.value)}
       />
+      <IconWrapper>
+        <FaSearch size={20} color="#fffff" />
+      </IconWrapper>
     </SearchBarContainer>
   );
 };

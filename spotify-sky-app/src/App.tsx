@@ -4,6 +4,7 @@ import AlbumDetails from "./pages/albumDetails/albumDetails";
 import Layout from "./layout";
 import "./App.css";
 import Notfound from "./pages/notFound/notfound";
+import ErrorPage from "./pages/error";
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="album/:id" element={<AlbumDetails />} />
+          <Route path="error" element={<ErrorPage />} />
         </Route>
       </Routes>
     </>

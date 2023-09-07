@@ -10,6 +10,7 @@ import {
 } from "./albumDetails.style";
 import GetAlbum from "../../hooks/useGetAlbum";
 import { useParams } from "react-router";
+import { msToMinutesAndSeconds } from "../../utils";
 
 const AlbumDetails = () => {
   const { id } = useParams();
@@ -27,18 +28,18 @@ const AlbumDetails = () => {
             <AlbumTitle>{album.name}</AlbumTitle>
           </AlbumBoxContainer>
 
+          <TopTable>
+            <Text>#</Text>
+            <Text>Song</Text>
+            <Text className="right">Durantion</Text>
+          </TopTable>
           <Tracks>
-            <TopTable>
-              <Text>#</Text>
-              <Text>Song</Text>
-              <Text className="right">Durantion</Text>
-            </TopTable>
             {album?.tracks?.map((item, index) => {
               return (
                 <Track key={item.id}>
                   <Text>{index + 1}</Text>
                   <Text>{item.name}</Text>
-                  <Text>{item.duration}</Text>
+                  <Text>{msToMinutesAndSeconds(item.duration)}</Text>
                 </Track>
               );
             })}

@@ -10,9 +10,10 @@ export const AlbumBoxContainer = styles.div`
     gap: 10px;
     transition: all .5s ease-in-out; 
 
-    :hover {
+    &:hover {
         cursor: pointer;
-        transform: scale(0.9);
+        transform: scale(1.2);
+        z-index: 10;
     }
 `;
 

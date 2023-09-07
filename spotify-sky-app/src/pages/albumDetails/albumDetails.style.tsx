@@ -8,9 +8,10 @@ export const AlbumDetailsContainer = styled.div`
 `;
 
 export const Text = styled.span`
-  color: #fff;
+  width: 100%;
+  color: #b6b6b6;
   font-size: 20px;
-  text-align: start;
+  white-space: wrap;
 `;
 
 export const Tracks = styled.div`
@@ -21,11 +22,16 @@ export const Tracks = styled.div`
 export const Track = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-top: 40px;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #5f5b5b;
+  transition: all 0.5s ease-in-out;
 
-  :hover {
-    background-color: #333333;
+  &:hover {
+    background-color: #4f5051;
     cursor: pointer;
+    transform: scale(1.1);
   }
 `;
 
@@ -54,4 +60,5 @@ export const AlbumBoxImage = styled.img`
 
 export const AlbumTitle = styled.span`
   font-size: 20px;
+  color: #b6b6b6;
 `;

@@ -1,5 +1,6 @@
 import { NewAlbums } from "../../../../hooks/useGetNewAlbums";
 import AlbumBox from "../../albumBox";
+import Loading from "../../loading";
 import { AlbumContainerContainer, Title } from "./albumContainer.style";
 
 interface AlbumContainerProps {
@@ -7,16 +8,13 @@ interface AlbumContainerProps {
   albums: NewAlbums[];
   handleClick: (id: string) => void;
   isLoading: boolean;
-  isError?: boolean;
 }
 const AlbumContainer = ({
   title,
   albums,
   handleClick,
   isLoading,
-  isError,
 }: AlbumContainerProps) => {
-  if (isError) return <div>error</div>;
   return (
     <>
       {title && <Title>{title}</Title>}
@@ -27,7 +25,7 @@ const AlbumContainer = ({
           </div>
         ))}
       </AlbumContainerContainer>
-      {isLoading && <div>is loading</div>}
+      {isLoading && <Loading />}
     </>
   );
 };

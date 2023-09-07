@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import instance from "../axios";
 import { Album, DataResponse } from "../interfaces/albums";
+import { useNavigate } from "react-router";
 
 export interface NewAlbums {
   id: string;
@@ -9,8 +10,9 @@ export interface NewAlbums {
 }
 
 const GetAlbums = (filterActive: boolean) => {
+  const navigate = useNavigate();
   const [newAlbums, setNewAlbums] = useState<NewAlbums[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNext, setHasNext] = useState(true);
@@ -42,6 +44,7 @@ const GetAlbums = (filterActive: boolean) => {
 
   const fetchNewAlbums = async () => {
     try {
+      setIsLoading(true);
       const response = await instance.get<DataResponse>(
         `/browse/new-releases?limit=10&offset=${(currentPage - 1) * 10}`
       );
@@ -56,6 +59,7 @@ const GetAlbums = (filterActive: boolean) => {
       setNewAlbums((prev) => [...prev, ...newAlbums]);
     } catch (error) {
       setIsError(true);
+      navigate("/error");
     } finally {
       setIsLoading(false);
     }

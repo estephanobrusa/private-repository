@@ -12,12 +12,11 @@ const Home = () => {
   const [filterActive, setFilterActive] = useState(false);
   const [input, setInput] = useState("");
   const debouncedSearchTerm = useDebounce({ value: input, delay: 1000 });
-  const { newAlbums, isError, isLoading } = GetAlbums(filterActive);
-  const {
-    albums,
-    isError: isErrorSearch,
-    isLoading: isLoadingSearch,
-  } = SearchAlbums({ input: debouncedSearchTerm, filterActive });
+  const { newAlbums, isLoading } = GetAlbums(filterActive);
+  const { albums, isLoading: isLoadingSearch } = SearchAlbums({
+    input: debouncedSearchTerm,
+    filterActive,
+  });
 
   const handleSearch = (input: string) => {
     setFilterActive(input === "" ? false : true);
@@ -37,14 +36,12 @@ const Home = () => {
           albums={newAlbums}
           handleClick={handleClick}
           isLoading={isLoading}
-          isError={isError}
         />
       ) : (
         <AlbumContainer
           albums={albums}
           handleClick={handleClick}
           isLoading={isLoadingSearch}
-          isError={isErrorSearch}
         />
       )}
     </DashBoardContainer>
