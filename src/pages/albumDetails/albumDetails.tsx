@@ -32,7 +32,7 @@ const AlbumDetails = () => {
           <TopTable>
             <Text>#</Text>
             <Text>Song</Text>
-            <Text className="right">Durantion</Text>
+            <Text className="right">Duration</Text>
           </TopTable>
           <Tracks>
             {album?.tracks?.map((item, index) => {

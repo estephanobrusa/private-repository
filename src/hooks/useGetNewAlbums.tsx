@@ -8,8 +8,11 @@ export interface NewAlbums {
   name: string;
   image: string;
 }
-
-const GetAlbums = (filterActive: boolean) => {
+interface GetNewAlbumsProps {
+  filterActive?: boolean;
+  ref: React.RefObject<HTMLDivElement>;
+}
+const useGetNewAlbums = ({ filterActive, ref }: GetNewAlbumsProps) => {
   const navigate = useNavigate();
   const [newAlbums, setNewAlbums] = useState<NewAlbums[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,30 +20,26 @@ const GetAlbums = (filterActive: boolean) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNext, setHasNext] = useState(true);
 
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      setCurrentPage(currentPage + 1);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !filterActive && hasNext) {
+          fetchNewAlbums();
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
     }
-  };
 
-  useEffect(() => {
-    if (!filterActive) setCurrentPage(1);
-  }, [filterActive]);
-
-  useEffect(() => {
-    if (!hasNext || filterActive) return;
-    fetchNewAlbums();
-  }, [currentPage, filterActive]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
     };
-  }, [currentPage]);
+  }, [ref, currentPage, filterActive, hasNext]);
 
   const fetchNewAlbums = async () => {
     try {
@@ -61,6 +60,7 @@ const GetAlbums = (filterActive: boolean) => {
       setIsError(true);
       navigate("/error");
     } finally {
+      setCurrentPage(currentPage + 1);
       setIsLoading(false);
     }
   };
@@ -72,4 +72,4 @@ const GetAlbums = (filterActive: boolean) => {
   };
 };
 
-export default GetAlbums;
+export default useGetNewAlbums;

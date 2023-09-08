@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import instance from "../axios";
-import { Album, Item } from "../interfaces/album";
+import { Album } from "../interfaces/album";
 
 export interface ArtistAlbum {
   id: string;
@@ -13,7 +13,7 @@ export interface TrackItem {
   name: string;
   duration: number;
 }
-const GetAlbum = (albumId?: string) => {
+const useGetAlbum = (albumId?: string) => {
   const [album, setAlbum] = useState<ArtistAlbum>();
 
   useEffect(() => {
@@ -48,4 +48,4 @@ const GetAlbum = (albumId?: string) => {
   };
 };
 
-export default GetAlbum;
+export default useGetAlbum;

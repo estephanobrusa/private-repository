@@ -5,10 +5,13 @@ const instance = axios.create({
 });
 
 let accessToken = "";
+let tokenExpiry = 0;
 
 instance.interceptors.request.use(
   async (config) => {
-    if (!accessToken) {
+    accessToken = localStorage.getItem("token") || "";
+    tokenExpiry = parseInt(localStorage.getItem("tokenExpiry") || "0");
+    if (!accessToken || Date.now() / 1000 >= tokenExpiry) {
       await getAccessToken();
     }
     config.headers.Authorization = `Bearer ${accessToken}`;
@@ -32,6 +35,10 @@ const getAccessToken = async () => {
     );
     accessToken = response.data.access_token;
     localStorage.setItem("token", accessToken);
+    localStorage.setItem(
+      "tokenExpiry",
+      Date.now() / 1000 + response.data.expires_in
+    );
   } catch (error) {
     console.error("Error fetching access token:", error);
   }

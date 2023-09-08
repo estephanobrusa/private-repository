@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const SearchBarContainer = styled.div<{ active: boolean }>`
+export const SearchBarContainer = styled.div<{ active: string }>`
   display: flex;
   align-self: center;
   justify-content: center;
   align-items: center;
-  width: ${(props) => (props.active ? "100%" : "40px")};
+  width: ${(props) => (props.active === "true" ? "100%" : "40px")};
   position: relative;
   height: 40px;
   justify-items: flex-end;

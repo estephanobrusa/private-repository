@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import instance from "../axios";
 import { Album, DataResponse } from "../interfaces/albums";
 import { NewAlbums } from "./useGetNewAlbums";
@@ -7,44 +7,41 @@ import { useNavigate } from "react-router";
 interface SearchAlbumsProps {
   input: string;
   filterActive?: boolean;
+  ref: React.RefObject<HTMLDivElement>;
 }
-const SearchAlbums = ({ input, filterActive }: SearchAlbumsProps) => {
+const useSearchAlbums = ({ input, filterActive, ref }: SearchAlbumsProps) => {
   const navigate = useNavigate();
   const [albums, setAlbums] = useState<NewAlbums[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [hasNext, setHasNext] = useState(true);
-  const lastQuery = useRef("");
 
   useEffect(() => {
-    if (input === "") return;
-    if (!hasNext) return;
-    if (lastQuery.current !== input) {
-      setAlbums([]);
-      setCurrentPage(1);
-      setHasNext(true);
-      setIsError(false);
-      setIsLoading(false);
-    }
-    fetchAlbums();
-  }, [input, currentPage]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (
+          entries[0].isIntersecting &&
+          filterActive &&
+          input !== "" &&
+          hasNext
+        ) {
+          fetchAlbums();
+        }
+      },
+      { threshold: 1 }
+    );
 
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      setCurrentPage(currentPage + 1);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
-  };
 
-  useEffect(() => {
-    if (filterActive) window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
     };
-  }, [currentPage, filterActive]);
+  }, [ref, currentPage, filterActive, input, hasNext]);
 
   const fetchAlbums = async () => {
     try {
@@ -54,7 +51,6 @@ const SearchAlbums = ({ input, filterActive }: SearchAlbumsProps) => {
           (currentPage - 1) * 10
         }&market=ES&type=album`
       );
-      lastQuery.current = input;
       setHasNext(!!response.data.albums.next);
       const newAlbums = response.data.albums.items.map((album: Album) => {
         return {
@@ -69,6 +65,7 @@ const SearchAlbums = ({ input, filterActive }: SearchAlbumsProps) => {
       navigate("/error");
     } finally {
       setIsLoading(false);
+      setCurrentPage(currentPage + 1);
     }
   };
 
@@ -79,4 +76,4 @@ const SearchAlbums = ({ input, filterActive }: SearchAlbumsProps) => {
   };
 };
 
-export default SearchAlbums;
+export default useSearchAlbums;
