@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { colors } from "../../../const/colors";
 
 const spinAnimation = keyframes`
   0% {
@@ -16,8 +17,8 @@ export const LoadingContainer = styled.div`
 `;
 
 export const LoadingSpinner = styled.div`
-  border: 8px solid #b6b6b6;
-  border-top: 8px solid #f3f3f3;
+  border: 8px solid ${colors.primary};
+  border-top: 8px solid ${colors.fourth};
   border-radius: 50%;
   width: 50px;
   height: 50px;

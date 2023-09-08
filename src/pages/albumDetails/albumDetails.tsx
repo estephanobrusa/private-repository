@@ -3,18 +3,22 @@ import {
   AlbumBoxImage,
   AlbumDetailsContainer,
   AlbumTitle,
+  BackButton,
   Text,
   TopTable,
   Track,
   Tracks,
 } from "./albumDetails.style";
 import GetAlbum from "../../hooks/useGetAlbum";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { msToMinutesAndSeconds } from "../../utils";
 import Loading from "../../components/atoms/loading";
 import { useEffect } from "react";
+import { HiOutlineArrowLeft } from "react-icons/hi";
+import { colors } from "../../const/colors";
 
 const AlbumDetails = () => {
+  const navigation = useNavigate();
   const { id } = useParams();
 
   const { album } = GetAlbum(id);
@@ -34,6 +38,10 @@ const AlbumDetails = () => {
     <>
       {album && (
         <AlbumDetailsContainer>
+          <BackButton onClick={() => navigation(-1)}>
+            {" "}
+            <HiOutlineArrowLeft size={20} color={colors.thrid} />
+          </BackButton>
           <AlbumBoxContainer>
             <AlbumBoxImage src={album.image}></AlbumBoxImage>
             <AlbumTitle>{album.name}</AlbumTitle>

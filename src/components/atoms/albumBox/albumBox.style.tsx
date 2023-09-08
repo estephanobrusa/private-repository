@@ -1,4 +1,5 @@
 import styles from "styled-components";
+import { colors } from "../../../const/colors";
 
 export const AlbumBoxContainer = styles.div`
     max-width: 300px;
@@ -27,6 +28,6 @@ box-shadow: 8px 10px 19px 9px rgba(254, 252, 252, 0.101);
 export const AlbumTitle = styles.span`
 font-size: 30px;
 text-overflow: ellipsis;
-color: #b6b6b6;
+color: ${colors.fourth};
 
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../../const/colors";
 
 export const NotResultContainer = styled.div`
   display: flex;
@@ -11,5 +12,5 @@ export const NotResultContainer = styled.div`
 export const Title = styled.h1`
   font-size: 20px;
   font-weight: 600;
-  color: #b6b6b6;
+  color: ${colors.primary};
 `;

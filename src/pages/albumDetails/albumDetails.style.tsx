@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { colors } from "../../const/colors";
 
 export const AlbumDetailsContainer = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 20px;
   padding: 20px;
@@ -9,7 +11,7 @@ export const AlbumDetailsContainer = styled.div`
 
 export const Text = styled.span`
   width: 100%;
-  color: #b6b6b6;
+  color: ${colors.thrid};
   font-size: 20px;
   white-space: wrap;
 `;
@@ -29,7 +31,7 @@ export const Track = styled.div`
   transition: all 0.5s ease-in-out;
 
   &:hover {
-    background-color: #4f5051;
+    background-color: ${colors.secondary};
     cursor: pointer;
     transform: scale(1.1);
   }
@@ -60,5 +62,23 @@ export const AlbumBoxImage = styled.img`
 
 export const AlbumTitle = styled.span`
   font-size: 20px;
-  color: #b6b6b6;
+  color: ${colors.fourth};
+`;
+
+export const BackButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid ${colors.thrid};
+  border-radius: 50%;
+  position: absolute;
+  left: 20px;
+  top: -100px;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 `;
