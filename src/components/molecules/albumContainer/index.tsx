@@ -1,7 +1,7 @@
-import { NewAlbums } from "../../../../hooks/useGetNewAlbums";
-import AlbumBox from "../../albumBox";
-import Loading from "../../loading";
-import NotResultAlbums from "../../notResultAlbums";
+import { NewAlbums } from "../../../hooks/useGetNewAlbums";
+import AlbumBox from "../../atoms/albumBox";
+import Loading from "../../atoms/loading";
+import NotResultAlbums from "../../atoms/notResultAlbums";
 import { AlbumContainerContainer, Title } from "./albumContainer.style";
 
 interface AlbumContainerProps {

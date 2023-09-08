@@ -9,6 +9,7 @@ const SearchBar = ({ input, handleSearch }: SearchBarProps) => {
   return (
     <SearchBarContainer active={input ? "true" : "false"}>
       <Input
+        type="text"
         placeholder="Search"
         value={input}
         onChange={(e) => handleSearch(e.target.value)}

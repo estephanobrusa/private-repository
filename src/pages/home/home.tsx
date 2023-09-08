@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import AlbumContainer from "../../components/atoms/molecules/albumContainer";
+import AlbumContainer from "../../components/molecules/albumContainer";
 import SearchBar from "../../components/atoms/searchBar/searchBar";
 import { DashBoardContainer } from "./home.style";
 import { useNavigate } from "react-router";
