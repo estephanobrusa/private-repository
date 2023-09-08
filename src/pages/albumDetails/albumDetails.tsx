@@ -12,11 +12,21 @@ import GetAlbum from "../../hooks/useGetAlbum";
 import { useParams } from "react-router";
 import { msToMinutesAndSeconds } from "../../utils";
 import Loading from "../../components/atoms/loading";
+import { useEffect } from "react";
 
 const AlbumDetails = () => {
   const { id } = useParams();
 
   const { album } = GetAlbum(id);
+
+  useEffect(() => {
+    if (!album) return;
+    document.title = `Spotify ${album?.name}`;
+
+    return () => {
+      document.title = "Spotfiy";
+    };
+  }, [album]);
 
   if (!album) return <Loading />;
 

@@ -18,6 +18,10 @@ const useSearchAlbums = ({ input, filterActive, ref }: SearchAlbumsProps) => {
   const [hasNext, setHasNext] = useState(true);
 
   useEffect(() => {
+    setAlbums([]);
+  }, [input]);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (
@@ -26,7 +30,7 @@ const useSearchAlbums = ({ input, filterActive, ref }: SearchAlbumsProps) => {
           input !== "" &&
           hasNext
         ) {
-          fetchAlbums();
+          if (!isLoading) fetchAlbums();
         }
       },
       { threshold: 1 }

@@ -11,7 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [filterActive, setFilterActive] = useState(false);
   const [input, setInput] = useState("");
-  const debouncedSearchTerm = useDebounce({ value: input, delay: 1000 });
+  const debouncedSearchTerm = useDebounce({ value: input, delay: 500 });
   const observerTarget = useRef<HTMLDivElement>(null);
   const { newAlbums, isLoading } = useGetNewAlbums({
     filterActive,

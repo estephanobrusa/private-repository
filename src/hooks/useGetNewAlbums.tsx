@@ -24,7 +24,7 @@ const useGetNewAlbums = ({ filterActive, ref }: GetNewAlbumsProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !filterActive && hasNext) {
-          fetchNewAlbums();
+          if (!isLoading) fetchNewAlbums();
         }
       },
       { threshold: 1 }
