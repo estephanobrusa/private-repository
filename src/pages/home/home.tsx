@@ -22,7 +22,6 @@ const Home = () => {
     filterActive,
     ref: observerTarget,
   });
-
   const handleSearch = (input: string) => {
     setFilterActive(input === "" ? false : true);
     setInput(input);
