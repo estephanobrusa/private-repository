@@ -5,7 +5,7 @@ export const AlbumContainerContainer = styles.div`
     display: flex;
     margin: 0 auto;
     justify-content: center;
-    gap: 10px;
+    gap: 40px;
     flex-wrap: wrap;
 
     @media (min-width: 1024px) {
