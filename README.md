@@ -1,27 +1,22 @@
-# React + TypeScript + Vite
+# Spofity-App Sky
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## How to Run the Project
 
-Currently, two official plugins are available:
+To run the Spofity-App Sky project, follow these steps:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone this repository to your local machine using the following command:
 
-## Expanding the ESLint configuration
+   git clone https://github.com/estephanobrusa/spotify-sky-app.git
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. run yarn install
+3. run yarn dev
 
-- Configure the top-level `parserOptions` property like this:
+Link Public:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+![Alt text](./info/FrontendSky.png)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Image project
+
+![Alt text](./info/desktopversion.png)
+![Alt text](./info/mobileversion.png)
+![Alt text](./info/detailsPageDesktopversion.png)
