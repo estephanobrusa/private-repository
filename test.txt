@@ -12,3 +12,4 @@ Data: 2024-06-26, DataLevel: 4
 Data: 2024-07-06, DataLevel: 0
 Data: 2024-06-26, DataLevel: 4
 Data: 2024-06-26, DataLevel: 4
+Data: 2024-06-26, DataLevel: 4
